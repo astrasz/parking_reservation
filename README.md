@@ -1,5 +1,5 @@
 ## **Inspiration for DDD architecture**
-This project of was a great help for me in understanding symfony DDD architecture: https://github.com/salletti/symfony-ddd-example
+This project was a great help for me in understanding symfony DDD architecture: https://github.com/salletti/symfony-ddd-example
 
 ## **Background image used in project**
 

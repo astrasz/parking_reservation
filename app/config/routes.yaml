@@ -1,0 +1,10 @@
+user:
+    resource: ../src/User/Application/API/HTTP/
+    type: attribute
+reservation:
+    resource: ../src/Reservation/Application/API/HTTP/
+    type: attribute
+
+kernel:
+    resource: App\Kernel
+    type: attribute

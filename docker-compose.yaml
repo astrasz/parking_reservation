@@ -1,0 +1,16 @@
+services:
+
+  parking_app:
+    container_name: parking_app
+    build:
+      dockerfile: ./app/Dockerfile
+    restart: on-failure
+    volumes:
+      - ./app/:/var/www
+    ports:
+      - "9000:80"
+
+networks:
+  default:
+    name: developer
+    external: true

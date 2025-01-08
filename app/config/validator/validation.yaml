@@ -1,0 +1,12 @@
+App\User\Application\DTO\UserRegistrationDTO:
+  properties:
+    email: 
+      - NotBlank: { message: Email cannot be blank. }
+      - Email: { message: It is not a valid email address." }
+    password: 
+      - NotBlank: { message: Please enter a password. }
+      - Regex: 
+          pattern: '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/'
+          message: Your password should contains at least one uppercase letter and lowercase letter and number and has 8 characters.
+    terms:
+       - EqualTo: true

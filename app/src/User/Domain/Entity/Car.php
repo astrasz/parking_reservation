@@ -14,6 +14,7 @@ class Car
     private string $brand;
     private string $registrationNo;
     private int $status = CarStatus::ACTIVE->value;
+    private User $owner;
     private string $ownerId;
 
     public function __construct(string $id)
@@ -56,13 +57,23 @@ class Car
         $this->status = $status;
     }
 
-    public function getOwnerId(): UserId
+    public function getOwner(): CarOwner
     {
-        return new UserId($this->ownerId);
+        return new CarOwner($this->owner);
     }
 
-    public function setOwnerid(string $ownerId): void
+    public function setOwner(CarOwner $owner): void
     {
-        $this->ownerId = $ownerId;
+        $this->owner = $owner->getUser();
+    }
+
+    public function getOwnerId(): string
+    {
+        return $this->ownerId;
+    }
+
+    public function setOwnerId(string $ownerId): void
+    {
+        $this->owner = (string) $ownerId;
     }
 }

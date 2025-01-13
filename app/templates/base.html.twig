@@ -15,24 +15,37 @@
 		{% endblock %}
 	</head>
 	<body>
+
 		{% if app.user %}
 			<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px;">
-				<p class="my-5 mx-5">
-					<a class="navbar-brand" href="/">Parking Reservation</a>
-				</p>
+				<div class="container-fluid">
+					<p class="my-5 mx-5">
+						<a class="navbar-brand" href="/">Parking Reservation</a>
+					</p>
 
 
-				<div class="mx-10">
-					<strong>You are logged in as
-						{{ app.user.email }}</strong>
+					<div class="mx-10">
+						<strong>You are logged in as
+							{{ app.user.email }}</strong>
+					</div>
+					<ul class="navbar-nav mx-5">
+						<li class="nav-item">
+							<a class="nav-link" href="{{path('app_show_car_form')}}">Add car</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+						</li>
+
+
+					</ul>
 				</div>
-				<div class="collapse navbar-collapse"></div>
-				<ul class="nav navbar-nav navbar-right mx-5">
-					<li>
-						<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
-					</li>
-				</ul>
 			</nav>
+
+			{# <div class="collapse navbar-collapse"> #}
+
+			{# </div> #}
+
+
 		{% endif %}
 
 		{% block body %}{% endblock %}

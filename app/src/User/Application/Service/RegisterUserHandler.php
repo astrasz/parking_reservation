@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\User\Application\Command;
+namespace App\User\Application\Service;
 
+use App\Shared\Application\Service\CommandHandlerInterface;
 use App\User\Application\Command\RegisterUser;
 use App\User\Application\Security\UserSecurityInterface;
 use App\User\Domain\Entity\User;
@@ -16,8 +17,8 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
 use Symfony\Component\Uid\Factory\UuidFactory;
 
-#[AsMessageHandler]
-class RegisterUserHandler
+// #[AsMessageHandler]
+class RegisterUserHandler implements CommandHandlerInterface
 {
 
     public function __construct(

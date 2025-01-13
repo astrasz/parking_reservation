@@ -8,7 +8,7 @@ use App\Shared\Domain\Event\DomainEventInterface;
 
 abstract class AggreagateRoot
 {
-    private array $domainEvents;
+    private array $domainEvents = [];
 
     public function addEvent(DomainEventInterface $event): void
     {

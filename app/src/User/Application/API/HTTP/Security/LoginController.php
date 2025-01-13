@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\User\Application\API\HTTP;
+namespace App\User\Application\API\HTTP\Security;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +26,7 @@ class LoginController extends AbstractController
 
         $lastUsername = $this->authUtils->getLastUsername();
 
-        return $this->render('user/login.html.twig', [
+        return $this->render('user/security/login.html.twig', [
             'last_username' => $lastUsername,
         ]);
     }

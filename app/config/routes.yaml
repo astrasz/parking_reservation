@@ -1,3 +1,6 @@
+security:
+    resource: ../src/User/Application/API/HTTP/Security
+    type: attribute
 user:
     resource: ../src/User/Application/API/HTTP/
     type: attribute

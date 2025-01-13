@@ -32,6 +32,6 @@ class OnUserRegisterEventSubscriber implements EventSubscriberInterface
             ->from(new Address('test@parkingapp.test', 'Parking Manager'))
             ->to($user->getEmail())
             ->subject('Please Confirm Your Email')
-            ->htmlTemplate('user/confirmation_email.html.twig'));
+            ->htmlTemplate('user/security/confirmation_email.html.twig'));
     }
 }

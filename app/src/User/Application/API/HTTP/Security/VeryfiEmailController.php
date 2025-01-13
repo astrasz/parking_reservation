@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\User\Application\API\HTTP;
+namespace App\User\Application\API\HTTP\Security;
 
 use App\User\Application\Security\UserSecurityInterface;
 use App\User\Domain\Repository\UserRepositoryInterface;

@@ -18,6 +18,7 @@ class CarOwner
         }
 
         $this->userId = $user->getId();
+        $this->user = $user;
     }
 
     public function getUser(): User

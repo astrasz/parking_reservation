@@ -114,16 +114,14 @@ class User extends AggreagateRoot
         string $registrationNo,
         CarOwner $carOwner
     ): Car {
-
-        /**
-         * @var string $id
-         */
-        $car = new Car($id);
-        $car->setBrand((string) $brand);
+        $car = new Car((string) $id);
+        $car->setBrand($brand->toString());
         $car->setRegistrationNo($registrationNo);
-        $car->setOwnerid((string) $carOwner);
+        $car->setOwner($carOwner);
+        $car->setCreatedAt(new DateTime());
+        $car->setUpdatedAt(new DateTime());
 
-        $carOwner->getUser()->addEvent(new UserRegisterCarEvent($id, (string) $carOwner));
+        $carOwner->getUser()->addEvent(new UserRegisterCarEvent($id, $carOwner));
 
         return $car;
     }

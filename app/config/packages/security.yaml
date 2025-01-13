@@ -6,10 +6,6 @@ security:
     providers:
         app_user_provider:
             id: App\User\Infrastructure\Security\UserProvider
-            # entity:
-            #     # class: App\User\Infrastructure\Security\UserSecurity
-            #     class: App\User\Infrastructure\Security\UserSecurity
-            #     property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -19,10 +15,6 @@ security:
             provider: app_user_provider
             custom_authenticators: 
                 - App\User\Infrastructure\Security\LoginFormAuthenticator
-            # form_login:
-            #     login_path: app_login
-            #     check_path: app_login
-            #     enable_csrf: true
             logout:
                 path: app_logout
                 # where to redirect after logout

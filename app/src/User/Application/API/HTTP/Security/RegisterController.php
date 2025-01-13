@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\User\Application\API\HTTP;
+namespace App\User\Application\API\HTTP\Security;
 
 use App\User\Application\Command\RegisterUser;
 use App\User\Application\DTO\UserRegistrationDTO;
@@ -54,7 +54,7 @@ class RegisterController extends AbstractController
             if ($status === 201) {
                 $form = $this->createForm($this->form::class, new UserRegistrationDTO());
             }
-            return $this->render('user/register.html.twig', [
+            return $this->render('user/security/register.html.twig', [
                 'registrationForm' => $form
             ])->setStatusCode($status);
         }

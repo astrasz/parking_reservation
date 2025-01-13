@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<div class="d-flex justify-content-center mt-5">
+		<div class="card h-50 w-50 mt-5" style="min-width: 450px; min-height: 400px">
+			<div class="card-body p-5">
+				<form method="post" action="{{path('app_new_car')}}">
+
+					<h2 class="text-uppercase text-center mb-3">Add new car</h2>
+
+					<div class="form-outline mb-4">
+						<input type="text" value="{{ brand }}" name="brand" id="brand" class="form-control form-control-lg" required autofocus>
+						<label for="brand" class="form-label">Brand</label>
+					</div>
+
+					<div class="form-outline mb-4">
+						<input type="text" name="registrationNo" id="password" class="form-control form-control-lg" required>
+						<label for="registrationNo" class="form-label">Registration Number</label>
+					</div>
+
+					<div class="d-flex justify-content-center">
+						<button type="submit" class="btn btn-success btn-block btn-lg text-body">Add</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

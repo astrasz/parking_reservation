@@ -13,10 +13,8 @@ use App\User\Domain\Entity\User;
 use App\User\Domain\Repository\CarRepositoryInterface;
 use App\User\Domain\Repository\UserRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Uid\Factory\UuidFactory;
 
-// #[AsMessageHandler]
 class AddNewCarHandler implements CommandHandlerInterface
 {
 
@@ -30,7 +28,6 @@ class AddNewCarHandler implements CommandHandlerInterface
     public function __invoke(AddNewCar $command): void
     {
         $user = $this->userRepo->find($command->getOwnerId());
-
         $this->carRepo->save(
             User::addCar(
                 new CarId($this->uuidFactory->create()->toString()),

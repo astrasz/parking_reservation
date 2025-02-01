@@ -2,6 +2,19 @@
 
 
 {% block body %}
-	<h1>Cars' list</h1>
+
+	<div class="d-flex flex-column  align-items-center justify-content-center">
+		{% for message in app.flashes('error') %}
+			<div class="alert alert-danger w-50 text-center mt-3" role="alert">
+				<small>{{ message }}</small>
+			</div>
+		{% endfor %}
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success w-50 text-center mt-3" role="alert">
+				<small>{{ message }}</small>
+			</div>
+		{% endfor %}
+		<h1>Cars' list</h1>
+	</div>
 
 {% endblock %}

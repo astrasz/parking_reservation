@@ -10,3 +10,15 @@ App\User\Application\DTO\UserRegistrationDTO:
           message: Your password should contains at least one uppercase letter and lowercase letter and number and has 8 characters.
     terms:
        - EqualTo: true
+
+App\User\Application\DTO\AddCarDTO:
+  properties:
+    brand:
+      - NotBlank: { message: Brand cannot be blank. }
+      - Choice:   { callback: [App\User\Domain\Entity\CarBrand, 'cases'], message: Choose valid brand. }
+    registrationNo: 
+      - NotBlank: { message: Registration Number cannot be blank. }
+      - Regex:
+          pattern: '/^[A-Z 0-9]{5,20}/'
+          message: Registration Number should contains uppercase letters and numbers and has at least 5 characters.
+    

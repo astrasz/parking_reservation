@@ -67,7 +67,7 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
             throw new UserNotFoundException();
         }
 
-        if ($refreshedUser != $user->getUser()) {
+        if ($this->isUserChanged($user->getUser(), $refreshedUser)) {
             throw new UserNotFoundException();
         }
 
@@ -98,5 +98,16 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
         }
         $user->getUser()->setPassword($newHashedPassword);
         $this->userRepo->save($user->getUser());
+    }
+
+    private function isUserChanged(User $user, User $refreshedUser): bool
+    {
+        return
+            $user->getId() !== $refreshedUser->getId() ||
+            $user->getEmail() !== $refreshedUser->getEmail() ||
+            $user->getPassword() !== $refreshedUser->getPassword() ||
+            $user->getRoles() !== $refreshedUser->getRoles() ||
+            $user->getStatus() !== $refreshedUser->getStatus() ||
+            $user->getIsVerified() !== $refreshedUser->getIsVerified();
     }
 }

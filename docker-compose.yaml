@@ -10,6 +10,15 @@ services:
     ports:
       - "9000:80"
 
+
+  messenger:
+    container_name: messenger
+    build:
+      dockerfile: ./app/Dockerfile-messenger
+    restart: on-failure
+    volumes:
+      - ./app/:/var/www
+
 networks:
   default:
     name: developer

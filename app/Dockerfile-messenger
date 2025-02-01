@@ -18,3 +18,7 @@ RUN composer install --prefer-dist --no-dev --no-scripts --no-progress --no-inte
 # COPY ../config/php/php.ini /usr/local/etc/php/
 
 COPY ../../app .
+
+RUN chmod +x /var/www/consume.sh
+
+ENTRYPOINT [ "sh", "/var/www/consume.sh" ]

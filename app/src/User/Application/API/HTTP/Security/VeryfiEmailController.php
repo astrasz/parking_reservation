@@ -11,7 +11,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 #[Route('/verify/email', name: 'app_verify_email')]
@@ -20,13 +19,13 @@ class VeryfiEmailController extends AbstractController
 
     public function __construct(private EmailVerifier $emailVerifier, private UserRepositoryInterface $repo) {}
 
-    public function __invoke(Request $request, TranslatorInterface $translator): Response
+    public function __invoke(Request $request): Response
     {
         try {
             $id = $request->query->get('id');
 
             if (null === $id) {
-                $this->addFlash('error', $translator->trans('Cannot recognize you, register', [], 'VerifyEmailBundle'));
+                $this->addFlash('error', 'Cannot recognize you, register', [], 'VerifyEmailBundle');
 
                 return $this->redirectToRoute('app_register');
             }
@@ -34,13 +33,13 @@ class VeryfiEmailController extends AbstractController
             $user = $this->repo->find($id);
 
             if (null === $user) {
-                $this->addFlash('error', $translator->trans('Cannot recognize you, register', [], 'VerifyEmailBundle'));
+                $this->addFlash('error', 'Cannot recognize you, register', [], 'VerifyEmailBundle');
 
                 return $this->redirectToRoute('app_register');
             }
             $this->emailVerifier->handleEmailConfirmation($request, $user);
         } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
+            $this->addFlash('error', $exception->getReason(), [], 'VerifyEmailBundle');
 
             return $this->redirectToRoute('app_register');
         }

@@ -10,7 +10,6 @@ use App\User\Domain\Repository\CarRepositoryInterface;
 use App\User\Domain\Repository\UserRepositoryInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Mime\Address;
 
 // #[AsMessageHandler]

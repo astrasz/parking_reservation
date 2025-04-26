@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route(path: '/cars', name: 'app_show_cars', methods: ['Get'])]
 class ShowCarsController extends AbstractController
@@ -24,13 +23,13 @@ class ShowCarsController extends AbstractController
         $this->messageBus = $queryBus;
     }
 
-    public function __invoke(TranslatorInterface $translator): Response
+    public function __invoke(): Response
     {
         $message = '';
         // $message = $this->handle(new FindAllCars());
 
         // if ($message instanceof Exception) {
-        //     $this->addFlash('error', $translator->trans($message->getMessage()));
+        //     $this->addFlash('error', $message->getMessage());
         //     $message = null;
         // }
 

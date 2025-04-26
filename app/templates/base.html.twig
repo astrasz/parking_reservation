@@ -6,28 +6,38 @@
 			{% block title %}Parking Reservation
 			{% endblock %}
 		</title>
-		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"> {% block stylesheets %}{% endblock %}
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
 
 		{% block javascripts %}
 			{% block importmap %}
 				{{ importmap('app') }}
 			{% endblock %}
 		{% endblock %}
+
+		{% block stylesheets %}{% endblock %}
 	</head>
 	<body>
 
 		{% if app.user %}
 			<nav class="navbar navbar-expand bg-dark border-bottom border-body" data-bs-theme="dark">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="/">Parking Reservation</a>
+					<a class="navbar-brand mb-0 h1" href="/">Parking Reservation</a>
 					<div class="collapse navbar-collapse">
-						<span class="navbar-text text-info ms-auto me-auto mb-2 mb-lg-0">You are logged in as
-							{{ app.user.email }}</span>
-						<ul class="navbar-nav">
+						<span class="navbar-text text-info mb-2 ms-5 mb-lg-0">
+							<small>You are logged in as
+								{{ app.user.email }}</small>
+						</span>
+						<ul class="navbar-nav ms-auto">
 							<li class="nav-item">
-								<a class="nav-link" href="{{path('app_new_car')}}">Add car</a>
+								<a class="nav-link" href="{{path('app_show_reservations')}}">Your Reservations</a>
 							</li>
-							<li class="nav-item">
+							<li class="nav-item ms-3">
+								<a class="nav-link" href="{{path('app_show_cars')}}">Your Cars</a>
+							</li>
+							<li class="nav-item ms-3">
+								<a class="nav-link" href="{{path('app_new_car')}}">Add Car</a>
+							</li>
+							<li class="nav-item ms-3">
 								<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
 							</li>
 						</ul>

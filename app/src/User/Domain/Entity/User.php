@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\User\Domain\Entity;
 
-use App\Shared\Domain\Entity\AggreagateRoot;
+use App\Shared\Domain\Entity\AggregateRoot;
 use App\Shared\Domain\Entity\Timestampbale;
 use App\User\Domain\Event\UserRegisterCarEvent;
 use App\User\Domain\Event\UserRegisterEvent;
 use DateTime;
 
-class User extends AggreagateRoot
+class User extends AggregateRoot
 {
     use Timestampbale;
 

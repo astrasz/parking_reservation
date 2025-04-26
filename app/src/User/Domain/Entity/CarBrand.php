@@ -13,7 +13,7 @@ enum CarBrand: string
     case FERRARI = 'Ferrari';
     case MERCEDES = 'Mercedes';
     case PORSCHE = 'Porsche';
-    case BMW = 'BMW';
+    case BMW = 'Bmw';
     case VOLKSWAGEN = 'Volkswagen';
 
     public function toString()

@@ -16,7 +16,6 @@ use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route(path: '/cars/new', name: 'app_new_car', methods: ['Get', 'Post'])]
 class AddNewCarController extends AbstractController
@@ -29,14 +28,14 @@ class AddNewCarController extends AbstractController
         $this->messageBus = $commandBus;
     }
 
-    public function __invoke(Request $request, TranslatorInterface $translator): Response
+    public function __invoke(Request $request): Response
     {
-        $car = new AddCarDTO();
-        $form = $this->createForm($this->form::class, $car);
-        $form->handleRequest($request);
         $status = 200;
-
         try {
+            $car = new AddCarDTO();
+            $form = $this->createForm($this->form::class, $car);
+            $form->handleRequest($request);
+
             if ($form->isSubmitted() && $form->isValid()) {
                 /**
                  * @var UserSecurityInterface $user 
@@ -49,20 +48,29 @@ class AddNewCarController extends AbstractController
                     $user->getUser()->getId()
                 ));
 
-                $this->addFlash('success', $translator->trans('Car was added. We have sent a confirmation to your email address.'));
+                $this->addFlash('success', 'Car was added. We have sent a confirmation to your email address.');
                 $status = 201;
             }
         } catch (HandlerFailedException $e) {
             if ($e->getPrevious() instanceof UniqueConstraintViolationException) {
-                $this->addFlash('error', $translator->trans('This registration number is unavailable, try another one.'));
+                $this->addFlash('error', 'This registration number is unavailable, try another one.');
                 $status = 400;
+            } else {
+                $this->addFlash('error', 'Something went wrong, try again.');
+                $status = 500;
             }
         } catch (Exception $e) {
-            $this->addFlash('error', $translator->trans('Something went wrong, try again.'));
+            $this->addFlash('error', 'Something went wrong, try again.');
             $status = 500;
         } finally {
             if ($status === 201) {
                 return $this->redirectToRoute('app_show_cars');
+            }
+            $errors = $form->getErrors(true);
+            if (count($errors)) {
+                foreach ($errors as $error) {
+                    $this->addFlash('error', $error->getMessage());
+                }
             }
             return $this->render('user/new_car.html.twig', [
                 'addCarForm' => $form

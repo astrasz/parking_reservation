@@ -1,0 +1,85 @@
+.reservation_form__form-field>label {
+    width: 20%;
+}
+
+.reservation_form__form-field>input,
+.reservation_form__form-field>select {
+    width: 70%;
+    margin-left: 1em;
+}
+
+.reservation_form__form-field>input,
+.reservation_form__form-field>select {
+    font-size: .7em;
+}
+
+.reservation_form__form-field>#reserve_place_form_placeId {
+    pointer-events: none;
+}
+
+.reservation_form {
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #343a40;
+}
+
+.reservation_form__form-field {
+    margin-bottom: 1.5rem;
+}
+
+.reservation_form__form-field input,
+.reservation_form__form-field select {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #495057;
+    color: #fff;
+    border: 1px solid #6c757d;
+    transition: all 0.3s ease;
+}
+
+.reservation_form__form-field input:focus,
+.reservation_form__form-field select:focus {
+    border-color: #17a2b8;
+    outline: none;
+    background-color: #212529;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    color: #fff;
+    border-radius: 5px;
+    /* font-size: 1.2rem; */
+    transition: all 0.3s ease;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+    color: #fff;
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+.text-white {
+    /* font-size: 1.1rem; */
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+input[type="datetime-local"]::-webkit-datetime-edit-seconds {
+    display: none;
+}
+
+input[type="datetime-local"]::-webkit-datetime-edit-minute {
+    padding-right: 0;
+}
+
+input[type="datetime-local"]::-webkit-datetime-edit {
+    text-align: center;
+}

@@ -12,6 +12,7 @@ use App\User\Domain\Entity\CarOwner;
 use App\User\Domain\Entity\User;
 use App\User\Domain\Repository\CarRepositoryInterface;
 use App\User\Domain\Repository\UserRepositoryInterface;
+use Exception;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Uid\Factory\UuidFactory;
 
@@ -28,6 +29,7 @@ class AddNewCarHandler implements CommandHandlerInterface
     public function __invoke(AddNewCar $command): void
     {
         $user = $this->userRepo->find($command->getOwnerId());
+
         $this->carRepo->save(
             User::addCar(
                 new CarId($this->uuidFactory->create()->toString()),

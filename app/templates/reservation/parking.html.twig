@@ -3,8 +3,57 @@
 {% block title %}Home
 {% endblock %}
 
+{% block javascripts %}
+	{{ parent() }}
+	<script type="module">
+		import '{{ asset('js/parking.js') }}';
+	</script>
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href='{{ asset('styles/parking.css')}}'>
+{% endblock %}
+
 {% block body %}
 
-	<h1>This is home!</h1>
+	<div class="vh-75 d-flex flex-column align-items-center justify-content-center mt-5 parking">
+		<h1 class="mb-4">PARKING</h1>
+
+		{% for message in app.flashes('error') %}
+			<div class="alert alert-danger w-50 text-center mt-3" role="alert">
+				<small>{{ message }}</small>
+			</div>
+		{% endfor %}
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success w-50 text-center mt-3" role="alert">
+				<small>{{ message }}</small>
+			</div>
+		{% endfor %}
+
+		<div class="vh-50 d-flex flex-wrap flex-grow-0 py-3 px-4 parking_box justify-content-between align-items-baseline">
+			{% for place in places %}
+
+				<div class="card mx-2 my-3 parking_box__place {{ place.isFree ? 'free' : '' }}" style="width: 9rem; height:12rem" id="{{place.number}}">
+					<div class="card-body">
+
+						<small>{{ place.number }}</small>
+						{% if(place.isFree) %}
+							<p class="card-text">Place is free</p>
+						{% else %}
+							<p class="card-text">Reservation end</p>
+							<p class="card-text">{{ place.reservationEnd|date('d/m/Y, H:i') }}</p>
+						{% endif %}
+
+					</div>
+
+				</div>
+
+			{% endfor %}
+
+		</div>
+
+
+	</div>
 
 {% endblock %}

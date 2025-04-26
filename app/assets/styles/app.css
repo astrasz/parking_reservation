@@ -2,6 +2,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+nav li {
+    font-size: .9rem;
 }

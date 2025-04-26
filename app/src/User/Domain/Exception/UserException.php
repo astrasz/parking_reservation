@@ -15,8 +15,8 @@ class UserException extends Exception implements DomainExceptionInterface
         return new static(sprintf("User id %s is not valid uuid", $id));
     }
 
-    public static function invalidArgument(string $email): static
+    public static function invalidArgument(string $prop): static
     {
-        return new static(sprintf('Value %s is not valid User property'));
+        return new static(sprintf('Value %s is not valid User property', $prop));
     }
 }

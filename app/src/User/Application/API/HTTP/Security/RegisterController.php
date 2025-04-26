@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/register', name: 'app_register', methods: ['Get', 'Post'])]
 class RegisterController extends AbstractController
@@ -27,8 +26,12 @@ class RegisterController extends AbstractController
         $this->messageBus = $commandBus;
     }
 
-    public function __invoke(Request $request, TranslatorInterface $translator): Response
+    public function __invoke(Request $request): Response
     {
+        if ($this->getUser()) {
+            return $this->redirect('app_show_parking');
+        }
+
         $user = new UserRegistrationDTO();
         $form = $this->createForm($this->form::class, $user);
         $form->handleRequest($request);
@@ -40,7 +43,7 @@ class RegisterController extends AbstractController
 
 
                 if ($message instanceof UniqueConstraintViolationException) {
-                    $this->addFlash('error', $translator->trans('This email address is unavailable, try another one.'));
+                    $this->addFlash('error', 'This email address is unavailable, try another one.');
                     $status = 400;
                 } else {
                     $this->addFlash('success', $message);
@@ -48,7 +51,7 @@ class RegisterController extends AbstractController
                 }
             }
         } catch (Exception $e) {
-            $this->addFlash('error', $translator->trans('Something went wrong, try again.'));
+            $this->addFlash('error', 'Something went wrong, try again.');
             $status = 500;
         } finally {
             if ($status === 201) {

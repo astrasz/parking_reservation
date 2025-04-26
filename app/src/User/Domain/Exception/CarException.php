@@ -15,9 +15,9 @@ class CarException extends Exception implements DomainExceptionInterface
         return new static(sprintf("Car id %s is not valid uuid", $id));
     }
 
-    public static function invalidArgument(string $email): static
+    public static function invalidArgument(string $prop): static
     {
-        return new static(sprintf("Value %s is not valid Car property"));
+        return new static(sprintf("Value %s is not valid Car property", $prop));
     }
 
     public static function invalidCarOwner(string $userId): static

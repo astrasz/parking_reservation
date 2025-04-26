@@ -1,0 +1,77 @@
+{% extends "base.html.twig" %}
+
+{% block title %}New Reservation
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="module">
+		import '{{ asset('js/new_reservation.js') }}';
+	</script>
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href='{{ asset('styles/new_reservation.css')}}'>
+{% endblock %}
+
+{% block body %}
+
+	<div class="d-flex flex-column  align-items-center justify-content-center">
+		{% for message in app.flashes('error') %}
+			<div class="alert alert-danger w-50 text-center mt-3" role="alert">
+				<small>{{ message }}</small>
+			</div>
+		{% endfor %}
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success w-50 text-center mt-3" role="alert">
+				<small>{{ message }}</small>
+			</div>
+		{% endfor %}
+
+		<div class="d-flex justify-content-center mt-3">
+			<div class="card h-50 w-50 mt-3" style="min-width: 490px; min-height: 400px; max-width: 520px">
+				<div class="card-body px-5 py-4 bg-dark reservation_form">
+					<p class="text-uppercase text-center text-white mb-5 h3">Reserve place</p>
+					{{ form_start(reservePlaceForm, {"attr": {"autocomplete": "off", "novalidate": "novalidate", "class": "reservation_form__form" }}) }}
+
+					<div class="mb-5 reservation_form__form-field">
+
+						<label for="placeNo" class="form-label text-white">
+							Place
+						</label>
+						{{ form_widget(reservePlaceForm.placeNo, {'attr' : {'id': 'placeNo', 'readonly': 'true'}, 'value': placeNo}) }}
+					</div>
+
+					<div class="mb-5 reservation_form__form-field">
+						<label for="carId" class="form-label text-white">
+							Car
+						</label>
+						{{ form_widget(reservePlaceForm.carId, {'attr' : {'id': 'carId'}}) }}
+					</div>
+
+					<div class="mb-5 reservation_form__form-field datetime-container">
+						<label for="start" class="form-label text-white">
+							Start
+						</label>
+						{{ form_widget(reservePlaceForm.start, {'attr' : {'id': 'start', 'data-timestamp': reservePlaceForm.start.vars.value|date("U")}}) }}
+					</div>
+
+					<div class="mb-5 reservation_form__form-field">
+						<label for="end" class="form-label text-white">
+							End
+						</label>
+						{{ form_widget(reservePlaceForm.end, {'attr' : {'id': 'end', 'data-timestamp': reservePlaceForm.end.vars.value|date("U")}}) }}
+					</div>
+
+					<div class="d-flex justify-content-center" style="margin-top: 2em">
+						<button type="submit" class="btn btn-info btn-block btn-lg text-body">Add</button>
+					</div>
+					{{form_end(reservePlaceForm)}}
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

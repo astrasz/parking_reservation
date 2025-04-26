@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\User\Application\EventSubscriber;
+namespace App\User\Application\DomainEventSubscriber;
 
 use App\User\Application\Security\EmailVerifierInterface;
 use App\User\Domain\Event\UserRegisterEvent;

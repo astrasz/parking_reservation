@@ -21,4 +21,10 @@ App\User\Application\DTO\AddCarDTO:
       - Regex:
           pattern: '/^[A-Z 0-9]{5,20}/'
           message: Registration Number should contains uppercase letters and numbers and has at least 5 characters.
-    
+
+App\Reservation\Application\DTO\ReservePlaceDTO:
+  properties:
+    start:
+      - Callback: [App\Reservation\Infrastructure\Validator\ReservationPeriodValidator, validateStart]
+    end: 
+      - Callback: [App\Reservation\Infrastructure\Validator\ReservationPeriodValidator, validateEnd]

@@ -17,4 +17,5 @@ use App\User\Domain\Entity\Car;
 interface CarRepositoryInterface
 {
     public function save(Car $car): void;
+    public function remove(Car $car): void;
 }

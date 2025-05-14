@@ -23,8 +23,10 @@ class AddNewCarController extends AbstractController
 
     use HandleTrait;
 
-    public function __construct(private readonly AddCarFormInterface $form, MessageBusInterface $commandBus)
-    {
+    public function __construct(
+        private readonly AddCarFormInterface $form,
+        MessageBusInterface $commandBus
+    ) {
         $this->messageBus = $commandBus;
     }
 

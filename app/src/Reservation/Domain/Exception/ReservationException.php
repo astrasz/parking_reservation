@@ -18,4 +18,9 @@ class ReservationException extends Exception implements DomainExceptionInterface
     {
         return new static(sprintf("Reservation %s is not valid Reservation property", $prop));
     }
+
+    public static function periodNotAvailable(int $placeId, string $start, string $end): static
+    {
+        return new static(sprintf('Place %d is not available for period: %s - %s', [$placeId, $start, $end]));
+    }
 }

@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href='{{ asset('styles/new_car.css')}}'>
+{% endblock %}
+
 {% block body %}
 	<div class="d-flex flex-column  align-items-center justify-content-center">
 		{% for message in app.flashes('error') %}
@@ -14,22 +19,22 @@
 		{% endfor %}
 
 		<div class="d-flex justify-content-center mt-5">
-			<div class="card h-50 w-50 mt-3" style="min-width: 490px; min-height: 400px; max-width: 520px">
-				<div class="card-body p-5 bg-dark">
+			<div class="card h-50 w-50 mt-5  bg-dark" style="min-width: 490px; min-height: 400px; max-width: 520px">
+				<div class="card-body p-5 py-4 newcar_form">
 					<p class="text-uppercase text-center text-white mb-5 h3">Add new car</p>
-					{{ form_start(addCarForm, {"attr": {"autocomplete": "off", "novalidate": "novalidate" }}) }}
+					{{ form_start(addCarForm, {"attr": {"autocomplete": "off", "novalidate": "novalidate"}}) }}
 
-					<div class="form-outline mb-5">
-
+					<div class="mb-5 newcar_form__form-field">
 						<label for="registrationNo" class="form-label text-white">
 							Brand
 						</label>
-						{{ form_widget(addCarForm.brand, {'attr' : {'id': 'registrationNo','class' : 'form-select'}}) }}
+						{{ form_widget(addCarForm.brand, {'attr' : {'id': 'registrationNo'}}) }}
 					</div>
 
-					<div class="mb-5">
-						<label for="{{ field_name(addCarForm.registrationNo) }}" class="form-label text-white">Registration Number</label>
-						<input type="text" value="{{ field_value(addCarForm.registrationNo) }}" name="{{ field_name(addCarForm.registrationNo) }}" id="{{ field_name(addCarForm.registrationNo) }}" class="form-control" required>
+					<div class="mb-5 newcar_form__form-field">
+						<label for="'registrationNo'" class="form-label text-white">Reg No</label>
+						{# <input type="text" value="{{ field_value(addCarForm.registrationNo) }}" name="{{ field_name(addCarForm.registrationNo) }}" id="{{ field_name(addCarForm.registrationNo) }}" class="form-control" required> #}
+						{{ form_widget(addCarForm.registrationNo, {'attr' : {'id': 'registrationNo'}}) }}
 					</div>
 
 					{{ form_row(addCarForm._token) }}

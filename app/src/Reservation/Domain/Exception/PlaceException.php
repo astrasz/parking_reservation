@@ -18,4 +18,9 @@ class PlaceException extends Exception implements DomainExceptionInterface
     {
         return new static(sprintf("Value %s is not valid Place property", $prop));
     }
+
+    public static function notFound(int $placeNo): static
+    {
+        return  new static(sprintf('Place number %d not found', $placeNo));
+    }
 }

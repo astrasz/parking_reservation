@@ -16,7 +16,7 @@ class FindAllPlacesHandler implements QueryHandlerInterface
         private readonly PlaceRepositoryInterface $placeRepo
     ) {}
 
-    public function __invoke(FindAllPlaces $query)
+    public function __invoke(FindAllPlaces $query): array
     {
         return $this->placeRepo->getParkingPlaces();
     }

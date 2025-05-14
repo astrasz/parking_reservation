@@ -24,4 +24,9 @@ class CarException extends Exception implements DomainExceptionInterface
     {
         return new static(sprintf('User %s cannot be car owner', $userId));
     }
+
+    public static function unauthorizedCarRemoval(string $userId, $id): static
+    {
+        return new static(sprintf('User %s is not car %s owner', [$userId, $id]));
+    }
 }

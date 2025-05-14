@@ -21,6 +21,13 @@ class CarRepository extends ServiceEntityRepository implements CarRepositoryInte
         $this->em = $registry->getManager();
     }
 
+
+    public function remove(Car $car): void
+    {
+        $this->em->remove($car);
+        $this->em->flush();
+    }
+
     public function save(Car $car): void
     {
         $this->em->persist($car);

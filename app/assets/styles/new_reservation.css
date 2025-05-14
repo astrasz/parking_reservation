@@ -1,24 +1,4 @@
-.reservation_form__form-field>label {
-    width: 20%;
-}
-
-.reservation_form__form-field>input,
-.reservation_form__form-field>select {
-    width: 70%;
-    margin-left: 1em;
-}
-
-.reservation_form__form-field>input,
-.reservation_form__form-field>select {
-    font-size: .7em;
-}
-
-.reservation_form__form-field>#reserve_place_form_placeId {
-    pointer-events: none;
-}
-
 .reservation_form {
-    border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     background-color: #343a40;
 }
@@ -45,17 +25,23 @@
     background-color: #212529;
 }
 
-.btn-info {
-    background-color: #17a2b8;
-    color: #fff;
-    border-radius: 5px;
-    /* font-size: 1.2rem; */
-    transition: all 0.3s ease;
+.reservation_form__form-field>label {
+    width: 20%;
 }
 
-.btn-info:hover {
-    background-color: #138496;
-    color: #fff;
+.reservation_form__form-field>input,
+.reservation_form__form-field>select {
+    width: 70%;
+    margin-left: 1em;
+}
+
+.reservation_form__form-field>input,
+.reservation_form__form-field>select {
+    font-size: .8em;
+}
+
+.reservation_form__form-field>#reserve_place_form_placeId {
+    pointer-events: none;
 }
 
 .form-label {

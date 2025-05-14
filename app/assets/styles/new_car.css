@@ -1,0 +1,55 @@
+.newcar_form {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #343a40;
+}
+
+.newcar_form__form-field {
+    margin-bottom: 1.5rem;
+}
+
+.newcar_form__form-field input,
+.newcar_form__form-field select {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.2rem;
+    background-color: #495057;
+    color: #fff;
+    border: 1px solid #6c757d;
+    transition: all 0.3s ease;
+}
+
+.newcar_form__form-field input:focus,
+.newcar_form__form-field select:focus {
+    border-color: #17a2b8;
+    outline: none;
+    background-color: #212529;
+}
+
+.newcar_form__form-field>label {
+    width: 20%;
+}
+
+.newcar_form__form-field>input,
+.newcar_form__form-field>select {
+    width: 70%;
+    margin-left: 1em;
+}
+
+.newcar_form__form-field>input,
+.newcar_form__form-field>select {
+    font-size: .8em;
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+.text-white {
+    /* font-size: 1.1rem; */
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 15px;
+    overflow: hidden;
+}

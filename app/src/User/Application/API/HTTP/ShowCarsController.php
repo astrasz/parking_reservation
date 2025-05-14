@@ -25,13 +25,18 @@ class ShowCarsController extends AbstractController
 
     public function __invoke(): Response
     {
-        $message = '';
-        // $message = $this->handle(new FindAllCars());
 
-        // if ($message instanceof Exception) {
-        //     $this->addFlash('error', $message->getMessage());
-        //     $message = null;
-        // }
+        try {
+            $message = $this->handle(new FindAllCars());
+
+            if ($message instanceof Exception) {
+                $this->addFlash('error', $message->getMessage());
+                $message = null;
+            }
+        } catch (Exception $e) {
+            $this->addFlash('error', 'Something went wrong');
+            $message = '';
+        }
 
         return $this->render('user/cars_list.html.twig', [
             'cars' => $message

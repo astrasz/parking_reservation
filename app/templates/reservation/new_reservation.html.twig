@@ -29,11 +29,11 @@
 			</div>
 		{% endfor %}
 
-		<div class="d-flex justify-content-center mt-3">
-			<div class="card h-50 w-50 mt-3" style="min-width: 490px; min-height: 400px; max-width: 520px">
-				<div class="card-body px-5 py-4 bg-dark reservation_form">
+		<div class="d-flex justify-content-center mt-5">
+			<div class="card h-50 w-50 mt-5 bg-dark" style="min-width: 490px; min-height: 400px; max-width: 520px">
+				<div class="card-body px-5 py-4 reservation_form">
 					<p class="text-uppercase text-center text-white mb-5 h3">Reserve place</p>
-					{{ form_start(reservePlaceForm, {"attr": {"autocomplete": "off", "novalidate": "novalidate", "class": "reservation_form__form" }}) }}
+					{{ form_start(reservePlaceForm, {"attr": {"autocomplete": "off", "novalidate": "novalidate" }}) }}
 
 					<div class="mb-5 reservation_form__form-field">
 

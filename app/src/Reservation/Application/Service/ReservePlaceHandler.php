@@ -14,6 +14,7 @@ use App\Reservation\Domain\Entity\ReservationStatus;
 use App\Reservation\Domain\Repository\PlaceRepositoryInterface;
 use App\Reservation\Domain\Repository\ReservationRepositoryInterface;
 use App\Reservation\Domain\Repository\ReservationStatusRepositoryInterface;
+use App\Reservation\Domain\Service\ReservationAvailabilityService;
 use App\Shared\Application\Service\CommandHandlerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
@@ -28,7 +29,8 @@ class ReservePlaceHandler implements CommandHandlerInterface
         private readonly ReservationStatusRepositoryInterface $reservationStatusRepo,
         private readonly PlaceRepositoryInterface $placeRepo,
         private readonly UuidFactory $uuidFactory,
-        private readonly EventDispatcherInterface $eventDispatcher
+        private readonly EventDispatcherInterface $eventDispatcher,
+        private readonly ReservationAvailabilityService $reservationAvailability
     ) {}
 
     public function __invoke(ReservePlace $command): void
@@ -36,11 +38,9 @@ class ReservePlaceHandler implements CommandHandlerInterface
         /**
          * @var ParkingPlace $parkingPlace
          */
-        $parkingPlace = $this->placeRepo->findOneBy(['number' => $command->getPlaceNo()]) ?? throw new NotFoundResourceException('Place not found');
+        $parkingPlace = $this->reservationAvailability->ensurePlaceExists($command->getPlaceNo());
 
-        if (!$this->reservationRepo->isPeriodAvailable($parkingPlace->getId(), $command->getStart(), $command->getEnd())) {
-            throw new BadRequestException('Parking place is not available in the selected period.');
-        }
+        $this->reservationAvailability->ensurePlaceIsAvailable($parkingPlace->getId(), $command->getStart(), $command->getEnd());
 
         /**
          * @var ReservationStatus $reservedStatus

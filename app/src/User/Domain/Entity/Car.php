@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\User\Domain\Entity;
 
 use App\Shared\Domain\Entity\Timestampbale;
+use App\User\Domain\Exception\CarException;
 
 class Car
 {
@@ -65,6 +66,16 @@ class Car
     public function setOwner(CarOwner $owner): void
     {
         $this->owner = $owner->getUser();
+    }
+
+    public function ensureCanBeRemovedBy(CarOwner $owner): void
+    {
+        !$this->isOwnedBy($owner) ?? throw CarException::unauthorizedCarRemoval($owner->getUser()->getId(), $this->getId());
+    }
+
+    public function isOwnedBy(CarOwner $owner): bool
+    {
+        return $this->getOwner()->getUser()->getId() === $owner->getUser()->getId();
     }
 
     // public function getOwnerId(): string
